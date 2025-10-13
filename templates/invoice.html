@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body { font-family: Arial, sans-serif; margin: 40px; }
+      h1 { color: #1a237e; }
+      table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+      th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+      .total { text-align: right; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <h1>Invoice</h1>
+    <p><b>Vendor:</b> {{ vendor }}<br>
+       <b>Invoice Date:</b> {{ invoice_date }}<br>
+       <b>PO Number:</b> {{ po_number }}</p>
+
+    <table>
+      <tr><th>Description</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+      {% for item in line_items %}
+      <tr>
+        <td>{{ item.desc }}</td>
+        <td>{{ item.qty }}</td>
+        <td>${{ "%.2f"|format(item.unit_price) }}</td>
+        <td>${{ "%.2f"|format(item.total) }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <p class="total">Subtotal: ${{ "%.2f"|format(subtotal) }}</p>
+    <p class="total">Tax (5%): ${{ "%.2f"|format(tax) }}</p>
+    <p class="total">Total Due: ${{ "%.2f"|format(invoice_total) }}</p>
+  </body>
+</html>
