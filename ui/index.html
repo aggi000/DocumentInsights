@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Java Extractions Viewer</title>
+  <link rel="stylesheet" href="/ui/styles.css">
+</head>
+<body>
+  <main class="panel">
+    <header>
+      <h1>Java Extractions</h1>
+      <p class="subtitle">Peek at what the Java service returns. Refresh to load the latest snapshot.</p>
+    </header>
+    <section class="controls">
+      <button id="refresh-btn">Refresh</button>
+      <span id="status" aria-live="polite">Waiting to load…</span>
+    </section>
+
+    <section class="uploader">
+      <h2>Run New Extraction</h2>
+      <p class="helper-text">Pick an invoice file to send through the extractor and push to the Java service.</p>
+      <form id="upload-form">
+        <label class="file-input" id="file-label">
+          <input type="file"
+                 id="file-input"
+                 name="file"
+                 accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.bmp,.gif"
+                 required>
+          <span id="file-label-text">Select a file…</span>
+        </label>
+        <button type="submit" id="upload-btn">Upload &amp; Extract</button>
+      </form>
+      <div id="upload-status" class="status-text">No file uploaded yet.</div>
+      <div id="upload-output" class="empty-state">Upload a file to see the extraction output.</div>
+    </section>
+
+    <section class="results">
+      <h2>Java Extractions Feed</h2>
+      <div id="output" class="empty-state">
+        No data fetched yet. Click refresh.
+      </div>
+    </section>
+  </main>
+  <script src="/ui/script.js" type="module"></script>
+</body>
+</html>
